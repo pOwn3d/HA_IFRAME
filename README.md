@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Système de Points pour Enfants
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Une application React qui permet de gérer un système de points pour enfants, avec des récompenses et des défis.
 
-## Available Scripts
+## Fonctionnalités
 
-In the project directory, you can run:
+- Gestion des points (ajouter, retirer, échanger)
+- Système de récompenses basé sur des seuils de points
+- Défis quotidiens
+- Tableau de bord parent et vues enfants
+- Authentification avec code parental
+- Historique des actions
+- Persistance des données via localStorage
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+# Installer les dépendances
+npm install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Démarrer l'application en mode développement
+npm start
+```
 
-### `npm test`
+L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Structure de l'application
 
-### `npm run build`
+- `src/app/` - Configuration du store Redux et localStorage
+- `src/features/` - Fonctionnalités principales organisées par domaine
+  - `auth/` - Authentification et code parental
+  - `points/` - Gestion des points et historique
+  - `settings/` - Paramètres du système
+  - `dashboard/` - Tableau de bord parent
+  - `childView/` - Vue adaptée aux enfants
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Utilisation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Ouvrez l'application et choisissez une vue:
+   - Vue parent (avec code parental)
+   - Vue enfant (Noa ou Nathan)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Vue enfant:
+   - Consulter les points actuels
+   - Demander l'ajout ou le retrait de points (avec validation parentale)
+   - Consulter l'historique récent
+   - Compléter des défis
 
-### `npm run eject`
+3. Vue parent:
+   - Tableau de bord avec résumé pour les deux enfants
+   - Gestion des points et récompenses
+   - Configuration des défis quotidiens
+   - Paramètres du système
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Personnalisation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Accédez aux paramètres du système depuis la vue parent pour:
+- Modifier le code parental
+- Ajuster les seuils de points pour les récompenses
+- Configurer l'heure de réinitialisation quotidienne
+- Personnaliser les thèmes pour chaque enfant
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Données
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Les données sont stockées localement dans le navigateur (localStorage), ce qui permet de conserver l'état de l'application entre les sessions.

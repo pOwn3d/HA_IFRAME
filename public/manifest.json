@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Points Enfants",
+  "name": "Système de Points pour Noa et Nathan",
   "icons": [
     {
       "src": "favicon.ico",
