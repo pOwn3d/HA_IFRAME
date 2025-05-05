@@ -13,7 +13,7 @@ export const store = configureStore({
     auth: authReducer,
     settings: settingsReducer,
   },
-  preloadedState
+  preloadedState,
 });
 
 // Configurer la persistance dans localStorage

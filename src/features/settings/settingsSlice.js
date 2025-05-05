@@ -44,14 +44,10 @@ export const settingsSlice = createSlice({
   },
 });
 
-export const {
-  updateResetTime,
-  updateRewardThresholds,
-  updateChildTheme,
-} = settingsSlice.actions;
+export const { updateResetTime, updateRewardThresholds, updateChildTheme } = settingsSlice.actions;
 
-export const selectResetTime = (state) => state.settings.resetTime;
-export const selectRewardThresholds = (state) => state.settings.rewardThresholds;
+export const selectResetTime = state => state.settings.resetTime;
+export const selectRewardThresholds = state => state.settings.rewardThresholds;
 export const selectChildTheme = (state, childId) => state.settings.theme[childId];
 
 export default settingsSlice.reducer;

@@ -10,7 +10,7 @@ module.exports = override(
     })
   ),
   // Configuration pour optimiser l'intégration dans Home Assistant
-  (config) => {
+  config => {
     // Désactiver le splitting de code pour mieux fonctionner dans les iframes
     config.optimization.splitChunks = {
       cacheGroups: {

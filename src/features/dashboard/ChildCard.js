@@ -9,7 +9,7 @@ import {
   Chip,
   Button,
   Grid,
-  Divider
+  Divider,
 } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -23,27 +23,27 @@ const ChildCard = ({ childId, data, detailed = false }) => {
   const dispatch = useDispatch();
   const theme = useSelector(state => selectChildTheme(state, childId));
   const thresholds = useSelector(selectRewardThresholds);
-  
+
   const [pointsDialogOpen, setPointsDialogOpen] = useState(false);
   const [dialogAction, setDialogAction] = useState(null);
-  
-  const handleOpenPointsDialog = (action) => {
+
+  const handleOpenPointsDialog = action => {
     setDialogAction(action);
     setPointsDialogOpen(true);
   };
-  
-  const formatName = (name) => {
+
+  const formatName = name => {
     return name.charAt(0).toUpperCase() + name.slice(1);
   };
 
   return (
     <>
-      <Card 
-        sx={{ 
-          borderRadius: 2, 
+      <Card
+        sx={{
+          borderRadius: 2,
           boxShadow: 3,
           background: `linear-gradient(45deg, ${theme.primary}22, ${theme.secondary}22)`,
-          border: `1px solid ${theme.primary}44`
+          border: `1px solid ${theme.primary}44`,
         }}
       >
         <CardContent>
@@ -51,23 +51,23 @@ const ChildCard = ({ childId, data, detailed = false }) => {
             <Typography variant="h5" component="h2" color={theme.primary}>
               {formatName(childId)}
             </Typography>
-            <Chip 
-              label={`${data.points.daily} points`} 
-              sx={{ 
-                backgroundColor: theme.primary, 
+            <Chip
+              label={`${data.points.daily} points`}
+              sx={{
+                backgroundColor: theme.primary,
                 color: 'white',
                 fontWeight: 'bold',
-                fontSize: '1rem'
-              }} 
+                fontSize: '1rem',
+              }}
             />
           </Box>
-          
-          <PointsProgress 
-            value={data.points.daily} 
+
+          <PointsProgress
+            value={data.points.daily}
             max={data.points.maxDaily}
             color={theme.primary}
           />
-          
+
           {detailed && (
             <Box mt={3}>
               <Grid container spacing={2}>
@@ -104,24 +104,22 @@ const ChildCard = ({ childId, data, detailed = false }) => {
               </Grid>
             </Box>
           )}
-          
+
           {data.dailyChallenge && (
             <Box mt={2} p={1.5} bgcolor="#fff9c4" borderRadius={1}>
               <Typography variant="subtitle2" gutterBottom>
                 Défi du jour :
               </Typography>
-              <Typography variant="body2">
-                {data.dailyChallenge}
-              </Typography>
+              <Typography variant="body2">{data.dailyChallenge}</Typography>
             </Box>
           )}
         </CardContent>
-        
+
         <Divider />
-        
+
         <CardActions sx={{ p: 2, justifyContent: 'space-between' }}>
-          <Button 
-            size="small" 
+          <Button
+            size="small"
             variant="outlined"
             startIcon={<AddCircleIcon />}
             onClick={() => handleOpenPointsDialog('add')}
@@ -129,8 +127,8 @@ const ChildCard = ({ childId, data, detailed = false }) => {
           >
             Ajouter
           </Button>
-          <Button 
-            size="small" 
+          <Button
+            size="small"
             variant="outlined"
             startIcon={<RemoveCircleIcon />}
             onClick={() => handleOpenPointsDialog('remove')}
@@ -138,8 +136,8 @@ const ChildCard = ({ childId, data, detailed = false }) => {
           >
             Retirer
           </Button>
-          <Button 
-            size="small" 
+          <Button
+            size="small"
             variant="outlined"
             startIcon={<EmojiEventsIcon />}
             onClick={() => handleOpenPointsDialog('redeem')}
@@ -149,7 +147,7 @@ const ChildCard = ({ childId, data, detailed = false }) => {
           </Button>
         </CardActions>
       </Card>
-      
+
       <PointsActionDialog
         open={pointsDialogOpen}
         onClose={() => setPointsDialogOpen(false)}

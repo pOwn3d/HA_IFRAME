@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { 
-  Dialog, 
-  DialogActions, 
-  DialogContent, 
-  DialogContentText, 
-  DialogTitle, 
-  TextField, 
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
   Button,
-  Box
+  Box,
 } from '@mui/material';
 import { selectParentCode } from './authSlice';
 
@@ -41,7 +41,13 @@ const ParentCodeDialog = ({ open, onClose, onValidCode, title, description }) =>
         <DialogContentText>
           {description || 'Veuillez entrer le code parental pour continuer.'}
         </DialogContentText>
-        <Box component="form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+        <Box
+          component="form"
+          onSubmit={e => {
+            e.preventDefault();
+            handleSubmit();
+          }}
+        >
           <TextField
             autoFocus
             margin="dense"
@@ -50,7 +56,7 @@ const ParentCodeDialog = ({ open, onClose, onValidCode, title, description }) =>
             fullWidth
             variant="outlined"
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={e => setCode(e.target.value)}
             error={error}
             helperText={error ? 'Code incorrect' : ''}
           />

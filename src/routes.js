@@ -24,11 +24,11 @@ const ProtectedRoute = ({ children }) => {
   // Les iframes ont accès direct sans authentification
   const isIframe = window !== window.parent;
   const isAuthenticated = localStorage.getItem('kidsPointsSystem') !== null;
-  
+
   if (!isAuthenticated && !isIframe) {
     return <Navigate to="/login" replace />;
   }
-  
+
   return children;
 };
 
@@ -37,29 +37,35 @@ const AppRoutes = () => {
     <Routes>
       {/* Routes principales avec navigation */}
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/dashboard" element={
-        <ProtectedRoute>
-          <DashboardPage />
-        </ProtectedRoute>
-      } />
-      <Route path="/child/:childId" element={
-        <ProtectedRoute>
-          <ChildViewPage />
-        </ProtectedRoute>
-      } />
-      
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/child/:childId"
+        element={
+          <ProtectedRoute>
+            <ChildViewPage />
+          </ProtectedRoute>
+        }
+      />
+
       {/* Routes d'actions */}
       <Route path="/actions/add-points/:childId" element={<AddPointsPage />} />
       <Route path="/actions/remove-points/:childId" element={<RemovePointsPage />} />
       <Route path="/actions/redeem-reward/:childId" element={<RedeemRewardPage />} />
       <Route path="/actions/complete-challenge/:childId" element={<CompleteChallengeAction />} />
-      
+
       {/* Pages autonomes pour les iframes */}
       <Route path="/standalone/points/:childId" element={<PointsDisplayPage />} />
       <Route path="/standalone/challenge/:childId" element={<ChallengeDisplayPage />} />
       <Route path="/standalone/history/:childId" element={<HistoryDisplayPage />} />
       <Route path="/standalone/rewards/:childId" element={<RewardsDisplayPage />} />
-      
+
       {/* Redirection par défaut */}
       <Route path="/" element={<Navigate to="/login" replace />} />
     </Routes>

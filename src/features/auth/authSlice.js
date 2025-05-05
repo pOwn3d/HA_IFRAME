@@ -14,7 +14,7 @@ export const authSlice = createSlice({
       state.isAuthenticated = true;
       state.currentUser = action.payload;
     },
-    logout: (state) => {
+    logout: state => {
       state.isAuthenticated = false;
       state.currentUser = null;
     },
@@ -26,8 +26,8 @@ export const authSlice = createSlice({
 
 export const { login, logout, changeParentCode } = authSlice.actions;
 
-export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
-export const selectCurrentUser = (state) => state.auth.currentUser;
-export const selectParentCode = (state) => state.auth.parentCode;
+export const selectIsAuthenticated = state => state.auth.isAuthenticated;
+export const selectCurrentUser = state => state.auth.currentUser;
+export const selectParentCode = state => state.auth.parentCode;
 
 export default authSlice.reducer;

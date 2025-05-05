@@ -90,14 +90,16 @@ const App = () => {
   });
 
   // Adaptations pour l'intégration dans Home Assistant
-  const containerStyle = isEmbedded ? {
-    padding: 0,
-    margin: 0,
-    height: '100vh',
-    overflow: 'auto'
-  } : {
-    my: 2
-  };
+  const containerStyle = isEmbedded
+    ? {
+        padding: 0,
+        margin: 0,
+        height: '100vh',
+        overflow: 'auto',
+      }
+    : {
+        my: 2,
+      };
 
   return (
     <ThemeProvider theme={theme}>

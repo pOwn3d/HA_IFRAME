@@ -15,7 +15,7 @@ import {
   Card,
   CardContent,
   Divider,
-  TextField
+  TextField,
 } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -28,29 +28,29 @@ import HistoryList from '../points/HistoryList';
 const ParentDashboard = () => {
   const dispatch = useDispatch();
   const children = useSelector(selectAllChildren);
-  
+
   const [currentTab, setCurrentTab] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [newChallenge, setNewChallenge] = useState({
     noa: '',
-    nathan: ''
+    nathan: '',
   });
-  
+
   const handleTabChange = (event, newValue) => {
     setCurrentTab(newValue);
   };
-  
+
   const handleLogout = () => {
     dispatch(logout());
   };
-  
-  const handleChallengeChange = (childId) => (event) => {
+
+  const handleChallengeChange = childId => event => {
     setNewChallenge({
       ...newChallenge,
-      [childId]: event.target.value
+      [childId]: event.target.value,
     });
   };
-  
+
   const tabs = ['Tableau de bord', 'Noa', 'Nathan', 'Historique'];
 
   const renderContent = () => {
@@ -176,15 +176,10 @@ const ParentDashboard = () => {
           ))}
         </Tabs>
       </AppBar>
-      
-      <Container sx={{ mt: 4 }}>
-        {renderContent()}
-      </Container>
-      
-      <SettingsDialog
-        open={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-      />
+
+      <Container sx={{ mt: 4 }}>{renderContent()}</Container>
+
+      <SettingsDialog open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </Box>
   );
 };

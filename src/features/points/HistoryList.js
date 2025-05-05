@@ -1,12 +1,12 @@
 import React from 'react';
-import { 
-  List, 
-  ListItem, 
-  ListItemText, 
-  ListItemIcon, 
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
   Divider,
   Typography,
-  Box
+  Box,
 } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -22,17 +22,17 @@ const HistoryList = ({ history }) => {
     );
   }
 
-  const formatDate = (timestamp) => {
+  const formatDate = timestamp => {
     const date = new Date(timestamp);
     return new Intl.DateTimeFormat('fr-FR', {
       day: '2-digit',
       month: '2-digit',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     }).format(date);
   };
 
-  const getActionIcon = (action) => {
+  const getActionIcon = action => {
     switch (action) {
       case 'add':
         return <AddCircleIcon color="success" />;
@@ -47,7 +47,7 @@ const HistoryList = ({ history }) => {
     }
   };
 
-  const getActionText = (item) => {
+  const getActionText = item => {
     switch (item.action) {
       case 'add':
         return `+${item.amount} points - ${item.reason}`;
@@ -67,13 +67,14 @@ const HistoryList = ({ history }) => {
       {history.map((item, index) => (
         <React.Fragment key={item.timestamp}>
           <ListItem alignItems="flex-start">
-            <ListItemIcon>
-              {getActionIcon(item.action)}
-            </ListItemIcon>
+            <ListItemIcon>{getActionIcon(item.action)}</ListItemIcon>
             <ListItemText
               primary={getActionText(item)}
               secondary={
-                <Box component="span" sx={{ display: 'block', fontSize: '0.75rem', color: 'text.secondary' }}>
+                <Box
+                  component="span"
+                  sx={{ display: 'block', fontSize: '0.75rem', color: 'text.secondary' }}
+                >
                   {formatDate(item.timestamp)}
                 </Box>
               }

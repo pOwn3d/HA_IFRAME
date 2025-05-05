@@ -23,7 +23,7 @@ const initialState = {
         maxDaily: 100,
       },
       lastAchievement: '',
-      dailyChallenge: 'Range ta chambre aujourd\'hui pour gagner 10 points bonus!',
+      dailyChallenge: "Range ta chambre aujourd'hui pour gagner 10 points bonus!",
       history: [],
       hasNegative: false,
       totalRewards: 0,
@@ -38,12 +38,12 @@ export const pointsSlice = createSlice({
     addPoints: (state, action) => {
       const { childId, amount, reason } = action.payload;
       const child = state.children[childId];
-      
+
       // Add points
       child.points.daily = Math.min(child.points.daily + amount, child.points.maxDaily);
       child.points.weekly += amount;
       child.points.monthly += amount;
-      
+
       // Record in history
       child.history.push({
         timestamp: new Date().toISOString(),
@@ -55,17 +55,17 @@ export const pointsSlice = createSlice({
     removePoints: (state, action) => {
       const { childId, amount, reason } = action.payload;
       const child = state.children[childId];
-      
+
       // Remove points
       child.points.daily = Math.max(child.points.daily - amount, 0);
       child.points.weekly = Math.max(child.points.weekly - amount, 0);
       child.points.monthly = Math.max(child.points.monthly - amount, 0);
-      
+
       // Check if went negative
       if (child.points.daily < 0 || child.points.weekly < 0 || child.points.monthly < 0) {
         child.hasNegative = true;
       }
-      
+
       // Record in history
       child.history.push({
         timestamp: new Date().toISOString(),
@@ -77,16 +77,16 @@ export const pointsSlice = createSlice({
     redeemReward: (state, action) => {
       const { childId, points, rewardName } = action.payload;
       const child = state.children[childId];
-      
+
       // Remove points
       child.points.daily = Math.max(child.points.daily - points, 0);
       child.points.weekly = Math.max(child.points.weekly - points, 0);
       child.points.monthly = Math.max(child.points.monthly - points, 0);
-      
+
       // Increment rewards
       child.totalRewards += 1;
       child.lastAchievement = rewardName;
-      
+
       // Record in history
       child.history.push({
         timestamp: new Date().toISOString(),
@@ -95,17 +95,17 @@ export const pointsSlice = createSlice({
         reason: rewardName,
       });
     },
-    resetDailyPoints: (state) => {
+    resetDailyPoints: state => {
       Object.values(state.children).forEach(child => {
         child.points.daily = 0;
       });
     },
-    resetWeeklyPoints: (state) => {
+    resetWeeklyPoints: state => {
       Object.values(state.children).forEach(child => {
         child.points.weekly = 0;
       });
     },
-    resetMonthlyPoints: (state) => {
+    resetMonthlyPoints: state => {
       Object.values(state.children).forEach(child => {
         child.points.monthly = 0;
       });
@@ -117,12 +117,12 @@ export const pointsSlice = createSlice({
     completeChallenge: (state, action) => {
       const { childId, points } = action.payload;
       const child = state.children[childId];
-      
+
       // Add bonus points
       child.points.daily = Math.min(child.points.daily + points, child.points.maxDaily);
       child.points.weekly += points;
       child.points.monthly += points;
-      
+
       // Record in history
       child.history.push({
         timestamp: new Date().toISOString(),
@@ -130,7 +130,7 @@ export const pointsSlice = createSlice({
         amount: points,
         reason: 'Défi quotidien complété',
       });
-      
+
       // Reset challenge
       child.dailyChallenge = '';
     },
@@ -150,8 +150,10 @@ export const {
 
 export const selectChildPoints = (state, childId) => state.points.children[childId].points;
 export const selectChildHistory = (state, childId) => state.points.children[childId].history;
-export const selectDailyChallenge = (state, childId) => state.points.children[childId].dailyChallenge;
-export const selectLastAchievement = (state, childId) => state.points.children[childId].lastAchievement;
-export const selectAllChildren = (state) => state.points.children;
+export const selectDailyChallenge = (state, childId) =>
+  state.points.children[childId].dailyChallenge;
+export const selectLastAchievement = (state, childId) =>
+  state.points.children[childId].lastAchievement;
+export const selectAllChildren = state => state.points.children;
 
 export default pointsSlice.reducer;

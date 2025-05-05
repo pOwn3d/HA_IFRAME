@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import { 
-  Container, 
-  Grid, 
-  Paper, 
-  Typography, 
-  Box, 
+import {
+  Container,
+  Grid,
+  Paper,
+  Typography,
+  Box,
   Button,
   AppBar,
   Toolbar,
@@ -18,18 +18,18 @@ import {
   ListItemText,
   Card,
   CardContent,
-  CardActions
+  CardActions,
 } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { logout } from '../auth/authSlice';
-import { 
-  selectChildPoints, 
+import {
+  selectChildPoints,
   selectDailyChallenge,
   selectLastAchievement,
-  selectChildHistory
+  selectChildHistory,
 } from '../points/pointsSlice';
 import { selectChildTheme, selectRewardThresholds } from '../settings/settingsSlice';
 import PointsProgress from '../points/PointsProgress';
@@ -46,11 +46,11 @@ const ChildView = ({ childId }) => {
   const lastAchievement = useSelector(state => selectLastAchievement(state, childId));
   const history = useSelector(state => selectChildHistory(state, childId));
   const thresholds = useSelector(selectRewardThresholds);
-  
+
   const [parentDialogOpen, setParentDialogOpen] = useState(false);
   const [pointsDialogOpen, setPointsDialogOpen] = useState(false);
   const [dialogAction, setDialogAction] = useState(null);
-  
+
   // Create a theme for this specific child
   const theme = createTheme({
     ...baseTheme,
@@ -73,7 +73,7 @@ const ChildView = ({ childId }) => {
     dispatch(logout());
   };
 
-  const openPointsDialog = (action) => {
+  const openPointsDialog = action => {
     setDialogAction(action);
     setParentDialogOpen(true);
   };
@@ -87,7 +87,7 @@ const ChildView = ({ childId }) => {
     setPointsDialogOpen(false);
   };
 
-  const formatName = (name) => {
+  const formatName = name => {
     return name.charAt(0).toUpperCase() + name.slice(1);
   };
 
@@ -104,58 +104,58 @@ const ChildView = ({ childId }) => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        
+
         <Container maxWidth="sm" sx={{ mt: 4 }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Paper 
-                elevation={3} 
-                sx={{ 
-                  p: 3, 
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 3,
                   borderRadius: 2,
-                  background: `linear-gradient(45deg, ${childTheme.primary}22, ${childTheme.secondary}22)` 
+                  background: `linear-gradient(45deg, ${childTheme.primary}22, ${childTheme.secondary}22)`,
                 }}
               >
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                   <Typography variant="h5" component="h2">
                     Points de {formatName(childId)}
                   </Typography>
-                  <Chip 
-                    label={`${points.daily} / ${points.maxDaily}`} 
-                    color="primary" 
+                  <Chip
+                    label={`${points.daily} / ${points.maxDaily}`}
+                    color="primary"
                     size="large"
                     sx={{ fontSize: '1.2rem', py: 2 }}
                   />
                 </Box>
-                
-                <PointsProgress 
-                  value={points.daily} 
+
+                <PointsProgress
+                  value={points.daily}
                   max={points.maxDaily}
                   color={childTheme.primary}
                 />
-                
+
                 <Box display="flex" justifyContent="space-around" mt={3}>
-                  <Button 
-                    variant="contained" 
-                    color="success" 
+                  <Button
+                    variant="contained"
+                    color="success"
                     startIcon={<AddCircleIcon />}
                     onClick={() => openPointsDialog('add')}
                     sx={{ borderRadius: 4 }}
                   >
                     Gagner
                   </Button>
-                  <Button 
-                    variant="contained" 
-                    color="error" 
+                  <Button
+                    variant="contained"
+                    color="error"
                     startIcon={<RemoveCircleIcon />}
                     onClick={() => openPointsDialog('remove')}
                     sx={{ borderRadius: 4 }}
                   >
                     Perdre
                   </Button>
-                  <Button 
-                    variant="contained" 
-                    color="secondary" 
+                  <Button
+                    variant="contained"
+                    color="secondary"
                     startIcon={<EmojiEventsIcon />}
                     onClick={() => openPointsDialog('redeem')}
                     sx={{ borderRadius: 4 }}
@@ -165,7 +165,7 @@ const ChildView = ({ childId }) => {
                 </Box>
               </Paper>
             </Grid>
-            
+
             {challenge && (
               <Grid item xs={12}>
                 <Card sx={{ borderRadius: 2 }}>
@@ -173,13 +173,11 @@ const ChildView = ({ childId }) => {
                     <Typography variant="h6" gutterBottom>
                       Défi du jour
                     </Typography>
-                    <Typography variant="body1">
-                      {challenge}
-                    </Typography>
+                    <Typography variant="body1">{challenge}</Typography>
                   </CardContent>
                   <CardActions>
-                    <Button 
-                      size="small" 
+                    <Button
+                      size="small"
                       color="primary"
                       onClick={() => openPointsDialog('challenge')}
                     >
@@ -189,7 +187,7 @@ const ChildView = ({ childId }) => {
                 </Card>
               </Grid>
             )}
-            
+
             {lastAchievement && (
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, borderRadius: 2, bgcolor: '#fff9c4' }}>
@@ -202,7 +200,7 @@ const ChildView = ({ childId }) => {
                 </Paper>
               </Grid>
             )}
-            
+
             <Grid item xs={12}>
               <Paper sx={{ p: 2, mt: 2, borderRadius: 2 }}>
                 <Typography variant="h6" gutterBottom>
@@ -213,15 +211,15 @@ const ChildView = ({ childId }) => {
             </Grid>
           </Grid>
         </Container>
-        
-        <ParentCodeDialog 
+
+        <ParentCodeDialog
           open={parentDialogOpen}
           onClose={() => setParentDialogOpen(false)}
           onValidCode={handleParentApproval}
           title="Permission Parentale"
           description="Demande à un parent de valider cette action."
         />
-        
+
         <PointsActionDialog
           open={pointsDialogOpen}
           onClose={() => setPointsDialogOpen(false)}
