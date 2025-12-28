@@ -1,129 +1,195 @@
-# Système de Points pour Enfants
+<!-- Header Banner -->
+<div align="center">
 
-Une application React moderne pour gérer un système de points pour enfants, avec des récompenses et des défis. Conçue pour être facilement intégrable dans Home Assistant via des iframes.
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=32&duration=3000&pause=1000&color=41BDF5&center=true&vCenter=true&width=600&lines=Kids+Points+System;Home+Assistant+Integration;Smart+Home+Dashboard" alt="Typing SVG" />
+  </a>
 
-## Fonctionnalités
+  <br><br>
 
-- Gestion des points (ajouter, retirer, échanger)
-- Système de récompenses basé sur des seuils de points
-- Défis quotidiens personnalisables
+  <!-- Badges -->
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+  <img src="https://img.shields.io/badge/Redux_Toolkit-2.2-764ABC?style=for-the-badge&logo=redux&logoColor=white" alt="Redux">
+  <img src="https://img.shields.io/badge/MUI-5.15-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="MUI">
+  <img src="https://img.shields.io/badge/Home_Assistant-Ready-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white" alt="Home Assistant">
+
+  <br><br>
+
+  <img src="https://img.shields.io/github/stars/pOwn3d/HA_IFRAME?style=social" alt="Stars">
+  <img src="https://img.shields.io/github/forks/pOwn3d/HA_IFRAME?style=social" alt="Forks">
+
+</div>
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
+
+## About
+
+> **Kids Points System for Home Assistant** - Une application React permettant de gerer un systeme de points pour enfants, integrable dans Home Assistant via iframes.
+
+<table>
+  <tr>
+    <td align="center" width="25%">
+      <img src="https://img.icons8.com/color/96/plus.png" width="50"/><br>
+      <b>Gestion Points</b><br>
+      <sub>Ajouter, retirer, echanger</sub>
+    </td>
+    <td align="center" width="25%">
+      <img src="https://img.icons8.com/color/96/gift.png" width="50"/><br>
+      <b>Recompenses</b><br>
+      <sub>Seuils personnalisables</sub>
+    </td>
+    <td align="center" width="25%">
+      <img src="https://img.icons8.com/color/96/target.png" width="50"/><br>
+      <b>Defis</b><br>
+      <sub>Challenges quotidiens</sub>
+    </td>
+    <td align="center" width="25%">
+      <img src="https://img.icons8.com/color/96/home.png" width="50"/><br>
+      <b>Home Assistant</b><br>
+      <sub>Integration native</sub>
+    </td>
+  </tr>
+</table>
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
+
+## Tech Stack
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=react,redux,materialui,nodejs&theme=dark" alt="Tech Stack"/>
+
+</div>
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
+
+## Features
+
+- Gestion des points (ajouter, retirer, echanger)
+- Systeme de recompenses base sur des seuils
+- Defis quotidiens personnalisables
 - Tableau de bord parent et vues enfants
-- Authentification avec code parental (1234 par défaut)
-- Thèmes spécifiques pour chaque enfant (couleurs chaudes pour Noa, froides pour Nathan)
-- Persistance des données avec localStorage
-- Réinitialisation automatique des points quotidiens
-- Interface utilisateur moderne et attrayante
-- Pages indépendantes pour faciliter l'intégration dans Home Assistant
+- Authentification avec code parental
+- Themes specifiques par enfant
+- Persistance localStorage
+- Reinitialisation automatique quotidienne
+- Interface moderne et attrayante
+- **Pages independantes pour Home Assistant**
 
-## Installation
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
+
+## Quick Start
 
 ```bash
-# Installer les dépendances
+# Clone
+git clone https://github.com/pOwn3d/HA_IFRAME.git
+cd HA_IFRAME
+
+# Install
 npm install
 
-# Démarrer l'application en mode développement
+# Run
 npm start
 ```
 
-L'application sera accessible à l'adresse [http://localhost:3000](http://localhost:3000).
+Application accessible sur [http://localhost:3000](http://localhost:3000)
 
-## Structure de l'application
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
 
-- `src/app/` - Configuration du store Redux et localStorage
-- `src/features/` - Fonctionnalités principales organisées par domaine
-- `src/pages/` - Pages dédiées pour différentes vues
-  - `auth/` - Page de connexion
-  - `dashboard/` - Tableau de bord parent
-  - `childView/` - Vue adaptée aux enfants
-  - `actions/` - Pages d'actions isolées (ajouter/retirer des points, etc.)
-  - `standalone/` - Composants autonomes pour les iframes
+## Home Assistant Integration
 
-## Intégration avec Home Assistant
+### Main Pages
 
-L'application est conçue pour être facilement intégrable dans Home Assistant via des iframes. Voici les différentes URL que vous pouvez utiliser:
+| Route | Description |
+|-------|-------------|
+| `/login` | Page de connexion |
+| `/dashboard` | Tableau de bord parent |
+| `/child/noa` | Vue pour Noa |
+| `/child/nathan` | Vue pour Nathan |
 
-### Pages principales
+### Standalone Widgets
 
-- `/login` - Page de connexion
-- `/dashboard` - Tableau de bord parent
-- `/child/noa` - Vue pour Noa
-- `/child/nathan` - Vue pour Nathan
+| Route | Description |
+|-------|-------------|
+| `/standalone/points/noa` | Affichage points |
+| `/standalone/challenge/noa` | Defi du jour |
+| `/standalone/history/noa` | Historique recent |
 
-### Widgets autonomes pour les cartes de Home Assistant
+### Action Pages
 
-- `/standalone/points/noa` - Affichage des points de Noa
-- `/standalone/points/nathan` - Affichage des points de Nathan
-- `/standalone/challenge/noa` - Défi du jour pour Noa
-- `/standalone/challenge/nathan` - Défi du jour pour Nathan
-- `/standalone/history/noa` - Historique récent pour Noa
-- `/standalone/history/nathan` - Historique récent pour Nathan
+| Route | Description |
+|-------|-------------|
+| `/actions/add-points/noa` | Ajouter des points |
+| `/actions/remove-points/noa` | Retirer des points |
+| `/actions/redeem-reward/noa` | Echanger recompense |
+| `/actions/complete-challenge/noa` | Valider defi |
 
-### Pages d'actions dédiées
-
-- `/actions/add-points/noa` - Ajouter des points à Noa
-- `/actions/add-points/nathan` - Ajouter des points à Nathan
-- `/actions/remove-points/noa` - Retirer des points à Noa
-- `/actions/remove-points/nathan` - Retirer des points à Nathan
-- `/actions/redeem-reward/noa` - Échanger des points contre une récompense pour Noa
-- `/actions/redeem-reward/nathan` - Échanger des points contre une récompense pour Nathan
-- `/actions/complete-challenge/noa` - Valider le défi du jour pour Noa
-- `/actions/complete-challenge/nathan` - Valider le défi du jour pour Nathan
-
-### Configuration dans Home Assistant
-
-Exemples de configuration pour l'intégration:
+### Home Assistant YAML Example
 
 ```yaml
-# Configuration du tableau de bord
+# Dashboard iframe
 type: iframe
-url: http://votre-serveur:3000/dashboard
+url: http://your-server:3000/dashboard
 aspect_ratio: 16:9
 
-# Widget de points dans une carte
+# Points widget
 type: iframe
-url: http://votre-serveur:3000/standalone/points/noa
+url: http://your-server:3000/standalone/points/noa
 aspect_ratio: 3:1
 
-# Bouton pour ajouter des points
+# Action button
 type: button
 name: Ajouter des points
 icon: mdi:plus-circle
 tap_action:
   action: url
-  url_path: http://votre-serveur:3000/actions/add-points/noa
+  url_path: http://your-server:3000/actions/add-points/noa
 ```
 
-## Personnalisation
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
 
-Accédez aux paramètres du système depuis la vue parent pour:
+## Project Structure
 
-- Modifier le code parental
-- Ajuster les seuils de points pour les récompenses
-- Configurer l'heure de réinitialisation quotidienne
-- Personnaliser les thèmes pour chaque enfant
-
-## Données
-
-Les données sont stockées localement dans le navigateur (localStorage), ce qui permet de conserver l'état de l'application entre les sessions.
-
-## Développement
-
-Commandes disponibles:
-
-```bash
-# Démarrer l'application en mode développement
-npm start
-
-# Construire l'application pour la production
-npm run build
-
-# Exécuter les tests
-npm test
+```
+src/
+├── app/              # Redux store & localStorage
+├── features/         # Feature modules
+├── pages/            # Page components
+│   ├── auth/         # Login
+│   ├── dashboard/    # Parent dashboard
+│   ├── childView/    # Child views
+│   ├── actions/      # Action pages
+│   └── standalone/   # Iframe widgets
+└── ...
 ```
 
-L'application est construite avec:
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
 
-- React (Create React App)
-- Redux Toolkit pour la gestion d'état
-- Material UI et Framer Motion pour l'interface utilisateur
-- React Router pour la navigation
+## Customization
+
+Access settings to:
+- Modify parental code
+- Adjust point thresholds
+- Configure daily reset time
+- Customize themes per child
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="line">
+
+<div align="center">
+
+### Author
+
+**Made with passion by [Christophe Lopez](https://github.com/pOwn3d)**
+
+<a href="https://www.linkedin.com/in/christophe-lopez/">
+  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+</a>
+<a href="https://github.com/pOwn3d">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+</a>
+
+<br><br>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
+
+</div>
